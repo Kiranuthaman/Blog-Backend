@@ -9,11 +9,13 @@ const userController = require('./controller/userController')
 
 const postController = require('./controller/postController')
 
+// comment controller
+const commentController =require('./controller/CommetsController')
+
 // jwtmiddleware
 const jwtmiddleware = require('./middleware/jwtMiddleWare')
 
 // multer
-
 const multerconfig = require('./middleware/multerMIddleWare')
 
 
@@ -35,4 +37,18 @@ router.get('/user-post',jwtmiddleware,postController.getuserPostContoller)
 
 // delter user  post
 router.delete('/remove-post/:id',jwtmiddleware,postController.removeUserProjectCOntroller)
+
+// update user post 
+router.put('/update-post/:id',jwtmiddleware,multerconfig.single("postImg"),postController.updateUserProjectController)
+
+// likes
+router.patch('/posts/:id/like', postController.addLikePostController);
+
+// add commentiy
+router.post('/comment/:id', jwtmiddleware,commentController.addCommentController);
+
+// Route for getting all comments for a specific post
+router.get('/postcomments/:id', jwtmiddleware,commentController.getCommentsController);
+
+
 module.exports = router

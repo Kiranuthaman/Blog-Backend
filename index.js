@@ -5,7 +5,6 @@ require('dotenv').config()
 require('./connection')
 
 // import express 
-
 const express = require('express')
 
 // import 
@@ -25,8 +24,6 @@ pfserver.use(express.json())
 
 // exporting upload folder
 pfserver.use('/upload',express.static('./upload'))
-
-
 
 // use
 pfserver.use(router)
