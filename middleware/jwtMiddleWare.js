@@ -14,8 +14,6 @@ const jwtMiddleware = (req,res,next)=>{
 
     } catch (error) {
         res.status(401).json(`Authorization failed due to `, error)
-    }
-
-    
+    }    
 }
 module.exports = jwtMiddleware
