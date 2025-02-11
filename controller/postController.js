@@ -136,6 +136,7 @@ exports.updateUserProjectController = async (req, res) => {
     }
 };
 
+
 // adding likes
 exports.addLikePostController = async (req, res) => {
     try {
@@ -165,5 +166,33 @@ exports.addLikePostController = async (req, res) => {
     } catch (error) {
         console.error('Error adding like:', error);
         res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+exports.addstatusController = async (req, res) => {
+    console.log(req.body);
+    const { Public } = req.body;  // Ensure 'Public' is correctly structured
+    console.log(Public);
+    
+    console.log(req.params);
+    const { id } = req.params;
+    console.log(id);
+
+    try {
+        const statusupdate = await posts.findByIdAndUpdate(
+            id,  // Use id directly
+            { public: Public }, 
+            { new: true }  // Returns the updated document
+        );
+
+        if (!statusupdate) {
+            return res.status(404).json({ message: "Post not found" });
+        }
+
+        console.log(statusupdate);
+        res.status(200).json(statusupdate);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 };

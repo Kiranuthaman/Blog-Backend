@@ -50,5 +50,7 @@ router.post('/comment/:id', jwtmiddleware,commentController.addCommentController
 // Route for getting all comments for a specific post
 router.get('/postcomments/:id', jwtmiddleware,commentController.getCommentsController);
 
+router.put('/statusupdate/:id',jwtmiddleware,postController.addstatusController)
+
 
 module.exports = router
